@@ -6,8 +6,6 @@ An example SwiftUI iOS app that displays movie metadata / media and includes a t
 - Low-level POSIX socket usage from Swift (ClientToServer.swift) showing how to open a TCP socket, build a sockaddr_in, and connect to a server.
 - A minimal Python-based static HTTP server (App_Project/Server) that serves files from an images/ directory on port 9000. A Dockerfile is included to package that server.
 
-This README explains the repository layout, how to run the components, and notes about networking, playback, and testing.
-
 ---
 
 ## Stack
@@ -40,7 +38,7 @@ App_Project/
 
 ---
 
-## What this app does (brief)
+## What this app does 
 
 - The app fetches movie metadata (the repo contains a TMDB API key constant) and displays lists and details in SwiftUI views.
 - Media playback uses AVPlayer with a URL (VideoPlayerView.swift). AVPlayer handles streaming, adaptive playback (HLS) and seeking if the server supports HTTP Range requests.
@@ -100,24 +98,3 @@ Notes:
 
 If playback fails to seek or perform partial downloads, the issue may be that the server does not fully support HTTP Range requests. For reliable seeking and progressive playback use a server that supports byte ranges or host content via a proper streaming format (HLS .m3u8) for best compatibility with AVPlayer.
 
----
-
-## Development notes / suggestions
-
-- Prefer using `URLSession` + `AVPlayer` (or direct AVPlayer URL) for fetching and playing remote media rather than hand-rolling HTTP over raw sockets unless you need a custom protocol.
-- If you need to support seeking from AVPlayer against the local server, use a server that supports HTTP Range requests (for example nginx or a small web framework that implements ranges), or implement Range handling in the Python server.
-- If you want an example that performs an HTTP GET over your existing socket code and returns the response body, I can add a small `SocketHTTPClient.swift` to the repo for testing.
-
----
-
-## Next steps I can do for you
-
-- Add a short example file that performs a raw-socket HTTP GET and returns the body for testing.
-- Add a NetworkVideoPlayer view that demonstrates pointing AVPlayer at the local server URL.
-- Replace or remove the embedded TMDB API key and provide instructions for adding your own via Xcode scheme/env.
-
----
-
-## License
-
-No license is provided in this repository. Add a LICENSE file if you want to set a license.
