@@ -102,12 +102,6 @@ If playback fails to seek or perform partial downloads, the issue may be that th
 
 ---
 
-## Security & credentials
-
-- The repo currently contains a TMDB API key in `App_Project/Test_App/Constants.swift` (apiKey = "a7e46cf9d4d8846864294269a67d9a7f"). Treat embedded keys as secrets: rotate or remove them before publishing or sharing widely.
-
----
-
 ## Development notes / suggestions
 
 - Prefer using `URLSession` + `AVPlayer` (or direct AVPlayer URL) for fetching and playing remote media rather than hand-rolling HTTP over raw sockets unless you need a custom protocol.
